@@ -1,3 +1,2 @@
 # iOSInterviewStudy
 
-* pr test
