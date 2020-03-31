@@ -26,6 +26,32 @@ iOS 기기에서 사용자는 설정 앱에서 언제든지 위치 서비스 설
 
 <br>
 
+<br>
+
+# Adding Location Services to Your App - Article
+
+## Start Location Services and Receive Events
+```CLLocationManager``` 인스턴스에서 다른 메서드를 사용하기 전에 delegate 개체를 설정해야 합니다.
+- ```CLLocationManager```에서 적절한 메서드를 호출하여 이벤트 전송을 시작합니다.
+- ```CLLocationManager```에서 적절한 메서드를 호출하여 앱이 더 이상 위치 이벤트를 수신할 필요가 없을 때 서비스를 중지합니다.
+
+```Core Location```은 필요하지 않을 때 하드웨어를 꺼 전력(배터리)을 적극적으로 관리합니다.
+예를 들어, 위치 이벤트에 필요한 정확도를 1km로 설정하면 location manager가 GPS 하드웨어를 끄고 WiFi 또는 셀 라디오에만 의존할 수 있으므로 상당한 전력 절감 효과를 얻을 수 있습니다.
+
+<br>
+
+# Choosing the Location Services Authorization to Request - Article
+
+## OverView
+앱이 위치 이벤트를 수신하는지 여부와 수신 시기를 결정하는 권한 상태입니다. 앱에서 요청할 수 있는 인증에는 두 가지 유형이 있습니다.
+- 사용할 때만
+앱이 사용 중인 동안 모든 위치 서비스를 사용하고 이벤트를 수신할 수 있습니다. 일반적으로 iOS 앱은 배경 위치 사용 표시기가 활성화된 상태에서 포어그라운드 또는 백그라운드에서 실행 중일 때 사용 중인 것으로 간주됩니다.
+
+- 항상
+앱은 모든 위치 서비스를 사용할 수 있으며, 사용자가 앱이 실행되고 있다는 것을 알지 못하는 경우에도 이벤트를 수신할 수 있습니다. 앱이 실행되고 있지 않으면 시스템이 앱을 시작하고 이벤트를 제공합니다.
+
+<br>
+
 ### 질문 2 작성
 
 공부하고 정리한 내용을 여기에 추가.
