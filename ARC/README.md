@@ -51,5 +51,48 @@ weak var tenant: Person?
 
 반대로, 인스턴스가 같거나 더 긴 라이프타임을 갖고 있다면 unowned로 선언합니다.
 
+- 예시 1 보충 — 딜리게이트
+
+```swift
+protocol DelegatingViewDelegate {
+    func delegatingMethod()
+}
+
+class DelegatingView: UIView {
+    var delegate: DelegatingViewDelegate? // strong reference
+}
+
+class ViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let delegatingView = DelegatingView()
+        delegatingView.delegate = self
+        view.addSubview(delegatingView)
+    }
+    
+    // ...
+}
+
+extension ViewController: DelegatingViewDelegate {
+    func delegatingMethod() {
+        print("delegatingMethod")
+    }
+}
+```
+
+이 경우 ViewController 인스턴스의 view.subviews 배열은 delegatingView를 참조하고, DelegatingView 인스턴스의 delegate 프로퍼티는 ViewController 인스턴스를 참조하기 때문에 강한 참조 사이클이 발생합니다. 그 결과 두 인스턴스들이 메모리에서 해제되지 않아 메모리 릭이 발생합니다.
+
+```swift
+protocol DelegatingViewDelegate: class {
+    func delegatingMethod()
+}
+
+class DelegatingView: UIView {
+    weak var delegate: DelegatingViewDelegate?
+}
+```
+위와 같이 weak 레퍼런스로 선언하여 강한 참조 사이클을 해결할 수 있습니다.
 
 
