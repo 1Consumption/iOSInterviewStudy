@@ -95,4 +95,83 @@ class DelegatingView: UIView {
 ```
 위와 같이 weak 레퍼런스로 선언하여 강한 참조 사이클을 해결할 수 있습니다.
 
+- 예시 2 — 클로저
 
+클로저는 레퍼런스 타입이기 때문에, 클래스 인스턴스 안의 프로퍼티에 클로저를 할당하고 클로저에서 이 인스턴스를 캡쳐할 경우에도 강한 참조 사이클이 발생할 수 있습니다.
+
+```swift
+class HTMLElement {
+
+    let name: String
+    let text: String?
+
+    lazy var asHTML: () -> String = {
+        if let text = self.text {
+            return "<\(self.name)>\(text)</\(self.name)>"
+        } else {
+            return "<\(self.name) />"
+        }
+    }
+		// ...
+}
+```
+
+asHTML 프로퍼티는 클로저를 참조하고, 클로저 안에서는 self 키워드로 HTML 인스턴스를 캡쳐하기 때문에 강한 참조 사이클이 발생합니다.
+
+```swift
+lazy var asHTML: () -> String = { [unowned self] in
+    if let text = self.text {
+        return "<\(self.name)>\(text)</\(self.name)>"
+    } else {
+        return "<\(self.name) />"
+    }
+}
+```
+
+클로저의 캡쳐 리스트를 이용해 weak 또는 unowned로 캡쳐하면 강한 참조 사이클을 해결할 수 있습니다. 위 예제의 경우, 클로저와 인스턴스가 항상 서로를 참조하며, 항상 같은 시간에 메모리에서 해제되므로 unowned로 캡쳐하는 것이 적절합니다.
+
+레퍼런스가 미래에 nil이 될 가능성이 있다면 weak로 캡쳐합니다.
+
+* 예시 2 보충 — Notification Center
+
+```swift
+extension Notification.Name {
+    static let notification = Notification.Name(rawValue: "notification")
+}
+
+class ObservableViewController: UIViewController {
+
+    private var observer: NSObjectProtocol?
+    private var capturedProperty = ""
+
+    deinit {
+        guard let observer = observer else { return }
+        NotificationCenter.default.removeObserver(observer)
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addObserver()
+    }
+
+    private func addObserver() {
+        observer = NotificationCenter.default.addObserver(forName: .notification, object: nil, queue: .main) { _ in
+            self.capturedProperty = "captured"
+        }
+    }
+}
+```
+
+해결 방법
+
+```swift
+private func addObserver() {
+    observer = NotificationCenter.default.addObserver(forName: .notification, object: nil, queue: .main) { [weak self] _ in
+        self.capturedProperty = "captured"
+    }
+}
+```
+
+### 출처 및 참고 자료
+
+[Automatic Reference Counting — The Swift Programming Language](https://docs.swift.org/swift-book/LanguageGuide/AutomaticReferenceCounting.html#ID51)
