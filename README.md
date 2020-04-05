@@ -6,7 +6,7 @@ iOS 기술면접 스터디를 진행하며 함께 정리하는 저장소입니�
 
 ## 스터디 진행 방식
 
-* 일주일에 한 번 코드스쿼드에서 모인다. (수요일 2시)
+* 일주일에 한 번 수요일에 코드스쿼드에서 모인다.
 * 한 주에 각자 하나씩 대답해올 면접 질문을 정한다.
 * 한주동안 자신이 담당한 주제에 대한 대답과, 다른 스터디원들의 주제에 대한 질문거리를 준비해온다.
 * 모여서는 돌아가면서 실전처럼 발표하고 스터디원들의 질문에 대해 대답한다.
@@ -23,6 +23,15 @@ iOS 기술면접 스터디를 진행하며 함께 정리하는 저장소입니�
 
 * [iOS Interview Questions][ref1]
 * [Interview Questions for Beginners][ref2]
+* [[번역]iOS 인터뷰 질문 답변 50선 - Part1][ref3]
+* [괜찮은 Swift 면접 질문][ref4]
+
+## 목차
+
+* [ARC][arc]
+* [Autolayout][autolayout]
+* [Swift][swift]
+* [iOS][ios]
 
 
 [Olaf]: https://github.com/1Consumption
@@ -32,3 +41,10 @@ iOS 기술면접 스터디를 진행하며 함께 정리하는 저장소입니�
 
 [ref1]: https://github.com/JeaSungLEE/iOSInterviewquestions
 [ref2]: https://github.com/JaeYeopHan/Interview_Question_for_Beginner
+[ref3]: https://blog.canapio.com/83
+[ref4]: https://soojin.ro/blog/interview
+
+[arc]: https://github.com/1Consumption/iOSInterviewStudy/tree/master/ARC
+[autolayout]: https://github.com/1Consumption/iOSInterviewStudy/tree/master/Autolayout
+[swift]: https://github.com/1Consumption/iOSInterviewStudy/tree/master/Swift
+[ios]: https://github.com/1Consumption/iOSInterviewStudy/tree/master/iOS
