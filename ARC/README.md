@@ -132,46 +132,6 @@ lazy var asHTML: () -> String = { [unowned self] in
 
 레퍼런스가 미래에 nil이 될 가능성이 있다면 weak로 캡쳐합니다.
 
-* 예시 2 보충 — Notification Center
-
-```swift
-extension Notification.Name {
-    static let notification = Notification.Name(rawValue: "notification")
-}
-
-class ObservableViewController: UIViewController {
-
-    private var observer: NSObjectProtocol?
-    private var capturedProperty = ""
-
-    deinit {
-        guard let observer = observer else { return }
-        NotificationCenter.default.removeObserver(observer)
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        addObserver()
-    }
-
-    private func addObserver() {
-        observer = NotificationCenter.default.addObserver(forName: .notification, object: nil, queue: .main) { _ in
-            self.capturedProperty = "captured"
-        }
-    }
-}
-```
-
-해결 방법
-
-```swift
-private func addObserver() {
-    observer = NotificationCenter.default.addObserver(forName: .notification, object: nil, queue: .main) { [weak self] _ in
-        self.capturedProperty = "captured"
-    }
-}
-```
-
 ### 출처 및 참고 자료
 
 [Automatic Reference Counting — The Swift Programming Language](https://docs.swift.org/swift-book/LanguageGuide/AutomaticReferenceCounting.html#ID51)
