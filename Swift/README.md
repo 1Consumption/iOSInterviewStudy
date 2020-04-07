@@ -94,3 +94,44 @@ a.compactMap{$0}
 // [1, 2, 3, 4, 5, 6, 7]
 ```
 
+# Extension에 대해 설명하시오.
+
+### Extension 기능 설명
+
+- Extension을 이용하여 이미 존재하는 클래스, 구조체, 열거형, 프로토콜 타입에 새 기능을 추가할 수 있습니다.
+
+    ```swift
+    extension SomeType {
+        // SomeType에 새로운 기능을 추가한다.
+    }
+    ```
+
+- 원본 소스 코드에 접근할 수 없는 경우에도 extension을 추가할 수 있습니다.
+- 연산 프로퍼티, 메서드, 이니셜라이저, subscript, nested type을 추가할 수 있습니다.
+- 클래스에 convenience initializer는 추가할 수 있지만, designated initializer 또는 deinitializer는 추가할 수 없습니다.
+- 이미 존재하는 타입을 새 프로토콜을 준수하도록 할 수 있습니다.
+
+    ```swift
+    extension SomeType: SomeProtocol, AnotherProtocol {
+        // 프로토콜을 준수하기 위한 구현을 한다.
+    }
+    ```
+
+- 이미 존재하는 기능을 override할 수는 없습니다.
+- 저장 프로퍼티는 추가할 수 없고, 이미 존재하는 프로퍼티에 프로퍼티 옵저버를 추가할 수도 없습니다.
+
+### 스위프트에서의 Extension 사용
+
+스위프트에서는 프로토콜을 확장하여 구현체를 제공하거나, 이 프로토콜을 준수하는 타입들에게 추가적인 기능을 더하는 식으로 사용할 수 있다.
+
+```swift
+protocol RandomNumberGenerator { ... }
+
+extension RandomNumberGenerator {
+    func randomBool() -> Bool {
+        return random() > 0.5
+    }
+}
+```
+
+이제 RandomNumberGenerator를 채택한 타입들은 randomBool()을 사용할 수 있다.
