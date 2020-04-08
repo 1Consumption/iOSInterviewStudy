@@ -120,7 +120,7 @@ a.compactMap{$0}
 - 이미 존재하는 기능을 override할 수는 없습니다.
 - 저장 프로퍼티는 추가할 수 없고, 이미 존재하는 프로퍼티에 프로퍼티 옵저버를 추가할 수도 없습니다.
 
-### 스위프트에서의 Extension 사용
+### Protocol Extension
 
 스위프트에서는 프로토콜을 확장하여 구현체를 제공하거나, 이 프로토콜을 준수하는 타입들에게 추가적인 기능을 더하는 식으로 사용할 수 있다.
 
@@ -135,3 +135,59 @@ extension RandomNumberGenerator {
 ```
 
 이제 RandomNumberGenerator를 채택한 타입들은 randomBool()을 사용할 수 있다.
+
+### 구조체 이니셜라이저 Extension
+
+구조체 이니셜라이저를 extension에서 구현하면, extension 안에서 initializer delegation을 사용하여 default memberwise initializer를 호출할 수 있습니다.
+
+```swift
+struct User {
+    let name: String
+    let title: String
+}
+
+let user = User(name: "하이디", title: "짱")
+```
+
+위 코드처럼, 구조체에 생성자를 구현하지 않으면 기본적으로 default memberwise initializer가 제공됩니다.
+
+```swift
+struct User2 {
+    let name: String
+    let title: String
+    
+    init() {
+        name = "하이디"
+        title = "zzang"
+    }
+}
+
+let user2 = User2()
+// let user22 = User2(name: "하이디", title: "짱") // 불가능
+```
+
+구조체에 커스텀 생성자를 추가하면, 자동 생성되는 멤버와이즈 이니셜라이저는 사용할 수 없게 됩니다. 이니셜라이저 위임(initializer delegation)을 통해서도 멤버와이즈 이니셜라이저를 호출할 수 없습니다.
+
+```swift
+struct User3 {
+    let name: String
+    let title: String
+}
+
+extension User3 {
+    init() {
+        name = "하이디"
+        title = "zzang"
+    }
+    
+    init(with number: Int) {
+        self.init(name: "하이디", title: "\(number)")
+    }
+}
+
+let user3 = User3()
+let user333 = User3(with: 5)
+let user33 = User3(name: "", title: "")
+```
+
+Extension을 사용하여 생성자를 추가하면, 구조체의 멤버와이즈 이니셜라이저를 그대로 사용할 수 있게 됩니다. 이니셜라이저 위임(initializer delegation)을 통해서도 멤버와이즈 이니셜라이저를 호출할 수 있습니다.
