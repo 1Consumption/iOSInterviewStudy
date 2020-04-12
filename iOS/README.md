@@ -447,3 +447,24 @@ func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurati
 ```
 
 UIContextMenuConfiguration: context menu의 구성 세부 정보가 포함 된 객체
+
+
+
+### 이제 이것을 tableView에 적용해보자!
+
+```swift
+func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+    let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+        let moveToDone = UIAction(title: "move to done") { _ in }
+        let edit = UIAction(title: "edit...") { _ in}
+        let delete = UIAction(title: "delete", attributes: .destructive) { _ in }
+        let menu = UIMenu(title: "", children: [moveToDone, edit, delete])
+        
+        return menu
+    }
+    return configuration
+}
+
+```
+
+위 코드는 `UITableViewDelegate` 프로토콜을 적용하면 사용할 수 있는 메소드를 구성한 모습이다. 다행스럽게도 `UITableViewDelegate` 에서 contextMenu에 대한 작업을 수행해주는 메소드가 있어서 각 셀마다 contextMenu를 등록해주지 않고도 각 셀에 대해 contextMenu를 사용할 수 있다.
