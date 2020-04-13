@@ -347,7 +347,6 @@ tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath])
 [UITableViewController](https://developer.apple.com/documentation/uikit/uitableviewcontroller) 
 
 
-
 ## Container ViewController
 
 - View Controller는 한 화면에서 처리할 책임이 너무 많을 때가 있는데, 이는 SRP(Single Responsibility Principle)를 위반해 모듈 간 긴밀하게 결합하고, 각 부품의 재사용과 테스트가 어려워지게 한다.
