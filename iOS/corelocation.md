@@ -16,7 +16,7 @@
 
 위치 서비스를 사용하려면 앱이 승인을 요청하고 시스템이 사용자에게 요청을 승인하거나 거부하라는 메시지를 표시합니다. 초기 프롬프트는 다음과 같습니다.
 
-<center><img width=300 src = "https://docs-assets.developer.apple.com/published/a26b435665/bd1e2eaa-ea1e-4e61-ba3a-f304e92a697a.png"></center>
+<p align="center"><img width=300 src = "https://docs-assets.developer.apple.com/published/a26b435665/bd1e2eaa-ea1e-4e61-ba3a-f304e92a697a.png"></p>
 
 <br>
 
