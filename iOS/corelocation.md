@@ -58,5 +58,96 @@ iOS 기기에서 사용자는 설정 앱에서 언제든지 위치 서비스 설
 <br>
   
 # Core Location Framework 예제 참고
+원문 : https://fluffy.es/current-location/
 
-링크 : https://fluffy.es/current-location/
+## 전체 core location 사용 흐름
+<p align="center"><img src="https://iosimage.s3.amazonaws.com/2019/45-current-location/locationFlow.png"></p>
+
+<br>
+
+## initialization code
+```swift
+// ViewController.swift
+import UIKit
+import CoreLocation
+
+class ViewController: UIViewController {
+    
+    let locationManager = CLLocationManager()
+  
+     override func viewDidLoad() {
+        super.viewDidLoad()
+        locationManager.delegate = self
+    }
+}
+
+extension ViewController: CLLocationManagerDelegate {
+    //이곳에서 delegate 메소드나 location manager를 다루면 된다.
+}
+```
+<br>
+
+## 사용자의 현재 위치를 알아내는 방법
+1. locationManager.requestLocation() 
+2. locationManager.startUpdatingLocation()
+
+차이점은 단 한번 요청(1번 메소드)하는가, 지속적으로 요청(2번 메소드)하는가.
+
+```swift
+// requestLocation()
+extension ViewController : CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // locations라는 배열로 현재 위치를 가져온다.
+        // 첫번째 인덱스에 있는 정보로 활용이 가능하다.
+        if let location = locations.first {
+            self.latitudeLabel.text = "\(location.coordinate.latitude)"
+            self.longitudeLabel.text = "\(location.coordinate.longitude)"
+        }
+    }
+}
+
+
+// startUpdatingLocation()
+extension ViewController : CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // locations의 배열에 하나 이상의 location을 담고 있음.
+      for location in locations {
+        // 마지막 인덱스에 가까울 수록 최근 위치.
+      }
+    }
+}
+// stopUpdatingLocation으로 추적을 멈출수가 있음.
+```
+<br>
+
+## 에러 핸들링
+```swift
+func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    // 사용자가 장치에서 위치 서비스를 활성화하지 않았을때나,
+    // 건물 내부에 있어 GPS 신호가 잡히지 않을 경우.
+  
+    // 예를 들자면 사용자에게 GPS 신호가 있는 장소로 걸어가라고 요청하는 경고를 표시하는 것이 좋습니다.
+}
+```
+
+<br>
+
+## requestLocation()이 위치를 검색하는데 더 오래 걸릴 수도 있습니다.
+requestLocation()는 Apple에서 제공하는 편리한 방법으로, 내부에서 startUpdatingLocation()을 실행하고, 여러 위치 데이터를 검색하고, delegate에게 전달할 가장 정확한 데이터를 선택하고, StopUpdatingLocation()을 호출합니다. 이 프로세스는 어떤 위치 데이터가 가장 적합한지 결정할 수 없는 경우 최대 10초(타임아웃 전후)가 걸릴 수 있습니다.
+
+검색 속도가 앱에 중요하고 위치 데이터 검색 및 필터링의 시작/중지 작업을 처리할 경우 대신 startUpdatingLocation()을 사용합니다.
+
+<br>
+
+## 정확도
+위치 데이터를 요청하기 전에 CLLocationManager에 대해 원하는 정확도 속성을 지정하여 위치 데이터의 정확도를 지정할 수 있습니다.
+
+```swift
+// location data의 정확도는 100m 범위내에 있음.
+locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+```
+
+iOS 및 macOS의 경우 이 속성의 기본값은 ```kCLLocationAccuracyBest```입니다. watchOS의 경우 기본값은 ```kCLLocationAccuracyHundredMeters``` 입니다.
+-> 애플 공식문서 참고.
+
+오차범위가 낮아질수록 반대급부로 위치를 특정하는 시간이 더 오래걸리므로 위치를 찾는데 시간을 절약해야할 필요가 있으면 적절하게 사용해야 한다고 합니다.
