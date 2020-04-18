@@ -33,7 +33,7 @@ func addObserver(forName name: NSNotification.Name?,
 ```
 - name : 해당 관찰자에만 알람을 가게 합니다. nil일 경우 notification center는 알림을 보낸 객체를 사용하여 관찰자에게 전달할지 여부를 결정하지 않습니다.
 -> nil로 사용할 경우 특정 Name만 받는게 아니라 알림 전부를 받는다. C의 message queue 느낌을 받았음..!
-- object : object에 특정 객체를 명시하면 명시한 객체가 발송한 노티피케이션일 때에만 해당 이름의 노티피케이션을 수신합니다.[^1]
+- object : object에 특정 객체를 명시하면 명시한 객체가 발송한 노티피케이션일 때에만 해당 이름의 노티피케이션을 수신합니다.<sup id="al">[1](#footnote1)</sup>
 - queue : notification 대기열, nil일 경우 block이 동기적으로 수행된다.
 - block : 알림을 받았을 때 실행됩니다. block은 notification center에서 복사하고 관찰자 등록이 제거될 때까지 보관합니다.
 
@@ -64,7 +64,7 @@ func addObserver(_ observer: Any,
 
 ## Publisher
 
-알림을 브로드캐스트할 때 이벤트를 내보내는 publisher[^2]를 반환합니다.
+알림을 브로드캐스트할 때 이벤트를 내보내는 publisher<sup id="al">[2](#footnote2)</sup>를 반환합니다.
 
 ```swift 
 func publisher(for name: Notification.Name, object: AnyObject? = nil) -> NotificationCenter.Publisher 
@@ -72,6 +72,5 @@ func publisher(for name: Notification.Name, object: AnyObject? = nil) -> Notific
 - 공식문서(article) : https://developer.apple.com/documentation/combine/receiving_and_handling_events_with_combine
 - 예제 : https://medium.com/flawless-app-stories/swift-combine-custom-publisher-6d1cc3dc248f
 
-[^1]: 출처 : https://gwangyonglee.tistory.com/31
-[^2]: 유형이 시간에 따라 일련의 값을 전송할 수 있음을 선언합니다.
-
+<b id="footnote1">1</b>: 출처 : https://gwangyonglee.tistory.com/31
+<b id="footnote2">2</b>: 유형이 시간에 따라 일련의 값을 전송할 수 있는 publisher란 객체를 반환함.
