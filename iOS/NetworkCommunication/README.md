@@ -111,20 +111,20 @@ protocol NetworkManable {
 
 ``` swift
 struct MockNetworkSuccessStub: NetworkManable {
-    func getResource(from: String, handler: @escaping (Data?, Error?) -> ()) throws {
-        let data = "this is mockData".data(using: .utf8)
-        handler(data, nil)
+    func getResource(from: String, handler: @escaping (Data?, URLResponse?, Error?) -> ()) throws {
+        let data = "this is mock data".data(using: .utf8)
+        handler(data, nil ,nil)
     }
 }
 
 struct MockNetworkFailureStub: NetworkManable {
-    func getResource(from: String, handler: @escaping (Data?, Error?) -> ()) throws {
-        handler(nil, NetworkErrorCase.NotFound)
+    func getResource(from: String, handler: @escaping (Data?, URLResponse?, Error?) -> ()) throws {
+        handler(nil, nil, NetworkErrorCase.NotFound)
     }
 }
 
 struct MockNetworkInvalidURLStub: NetworkManable {
-    func getResource(from: String, handler: @escaping (Data?, Error?) -> ()) throws {
+    func getResource(from: String, handler: @escaping (Data?, URLResponse?, Error?) -> ()) throws {
         throw NetworkErrorCase.InvalidURL
     }
 }
