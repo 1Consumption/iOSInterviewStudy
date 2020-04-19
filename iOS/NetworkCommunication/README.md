@@ -2,7 +2,7 @@
 
 ## Overview
 
- [`URLSession`](https://developer.apple.com/documentation/foundation/urlsession클래스와 관련된 클래스는 제공된 URL에서 데이터를 endpoint로 부터 다운로드 및 endpoint에 업로드하느 API를 제공합니다. 
+ [`URLSession`](https://developer.apple.com/documentation/foundation/urlsession)클래스와 관련된 클래스는 제공된 URL에서 데이터를 endpoint로 부터 다운로드 및 endpoint에 업로드하느 API를 제공합니다. 
 
 앱은 하나 이상의 URLSession 인스턴스를 생성하며각 인스턴스는 관련 data-transfer 작업을 조정합니다.`(Your app creates one or more URLSession instances, each of which coordinates a group of related data-transfer tasks.)` 예를 들어 웹브라우저를 만드는 경우, 창당 하나의 세션을 생성하거나 상호작용을 하기 위해(서로 메세지를 보내기 위해) 사용하거나, 백그라운드에서 다운로드를 하기 위해 다른 세션을 생성할 수 있습니다.
 
