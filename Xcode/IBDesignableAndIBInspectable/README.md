@@ -129,3 +129,12 @@ class Line: UIView {
 draw()를 오버라이드한 후 프로퍼티가 바뀔 때마다 setNeedsDisplay()를 이용해 뷰를 다시 그려주도록 설정하면, 뷰를 그린 결과를 인터페이스 빌더에서 볼 수 있습니다.
 
 ![overriding-draw-result](overriding-draw-result.png)
+
+### References
+
+* [Xcode Help — Debug custom views in Interface Builder][xcode-help]
+* [Start Developing iOS Apps (Swift)][ios-app-guide]
+
+
+[xcode-help]: https://help.apple.com/xcode/mac/current/#/dev5df060a3b
+[ios-app-guide]: https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/ImplementingACustomControl.html#//apple_ref/doc/uid/TP40015214-CH19-SW1
