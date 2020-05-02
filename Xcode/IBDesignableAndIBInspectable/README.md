@@ -98,3 +98,34 @@ let star = UIImage(named: "star", in: bundle, compatibleWith: self.traitCollecti
 ```
 
 위 코드는 Assets catalog로부터 이미지를 로드합니다. 에셋 카탈로그는 앱의 main bundle에 위치하기 때문에, 앱에서는 `UIImage(named:)` 메서드를 이용해 이미지를 로드할 수 있지만, @IBDesignable로 선언된 커스텀 뷰는 인터페이스 빌더에서도 동작해야 합니다. 이미지들이 인터페이스 빌더에서 로드될 수 있도록 하기 위해서, 카탈로그의 번들을 명시해야 합니다.
+
+### 응용: draw() 오버라이드하기
+
+```swift
+@IBDesignable
+class Line: UIView {
+    
+    @IBInspectable var borderColor: UIColor? {
+        didSet { setNeedsDisplay() }
+    }
+
+    @IBInspectable var borderWidth: CGFloat = 0 {
+        didSet { setNeedsDisplay() }
+    }
+    
+    override func draw(_ rect: CGRect) {
+        let aPath = UIBezierPath()
+        let centerY = frame.height / 2
+        aPath.move(to: CGPoint(x: 0, y: centerY))
+        aPath.addLine(to: CGPoint(x: frame.width, y: centerY))
+        aPath.close()
+        borderColor!.set()
+        aPath.lineWidth = borderWidth
+        aPath.stroke()
+    }
+}
+```
+
+draw()를 오버라이드한 후 프로퍼티가 바뀔 때마다 setNeedsDisplay()를 이용해 뷰를 다시 그려주도록 설정하면, 뷰를 그린 결과를 인터페이스 빌더에서 볼 수 있습니다.
+
+![overriding-draw-result](overriding-draw-result.png)
