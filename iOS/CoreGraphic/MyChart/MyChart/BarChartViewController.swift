@@ -14,7 +14,7 @@ class BarChartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        barChartView.setGraph(element: [10,90,30,10])
+        barChartView.setGraph(element: [10,90,30,10,40,90,20])
     }
 }
 

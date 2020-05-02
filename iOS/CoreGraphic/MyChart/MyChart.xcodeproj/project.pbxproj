@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A510306A245DFC5F0004A5E5 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5103069245DFC5F0004A5E5 /* PieChartView.swift */; };
 		A54CFBB1245DE4B600D53717 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54CFBB0245DE4B600D53717 /* BarChartView.swift */; };
 		A5F0C2C4245DE1AE0088DE3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0C2C3245DE1AE0088DE3F /* AppDelegate.swift */; };
 		A5F0C2C6245DE1AE0088DE3F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0C2C5245DE1AE0088DE3F /* SceneDelegate.swift */; };
 		A5F0C2C8245DE1AE0088DE3F /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0C2C7245DE1AE0088DE3F /* BarChartViewController.swift */; };
-		A5F0C2CA245DE1AE0088DE3F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0C2C9245DE1AE0088DE3F /* SecondViewController.swift */; };
+		A5F0C2CA245DE1AE0088DE3F /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0C2C9245DE1AE0088DE3F /* PieChartViewController.swift */; };
 		A5F0C2CD245DE1AE0088DE3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5F0C2CB245DE1AE0088DE3F /* Main.storyboard */; };
 		A5F0C2CF245DE1B00088DE3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5F0C2CE245DE1B00088DE3F /* Assets.xcassets */; };
 		A5F0C2D2245DE1B00088DE3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5F0C2D0245DE1B00088DE3F /* LaunchScreen.storyboard */; };
@@ -29,12 +30,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A5103069245DFC5F0004A5E5 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		A54CFBB0245DE4B600D53717 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		A5F0C2C0245DE1AE0088DE3F /* MyChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F0C2C3245DE1AE0088DE3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5F0C2C5245DE1AE0088DE3F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A5F0C2C7245DE1AE0088DE3F /* BarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
-		A5F0C2C9245DE1AE0088DE3F /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		A5F0C2C9245DE1AE0088DE3F /* PieChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
 		A5F0C2CC245DE1AE0088DE3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5F0C2CE245DE1B00088DE3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5F0C2D1245DE1B00088DE3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -87,7 +89,8 @@
 				A5F0C2C5245DE1AE0088DE3F /* SceneDelegate.swift */,
 				A5F0C2C7245DE1AE0088DE3F /* BarChartViewController.swift */,
 				A54CFBB0245DE4B600D53717 /* BarChartView.swift */,
-				A5F0C2C9245DE1AE0088DE3F /* SecondViewController.swift */,
+				A5F0C2C9245DE1AE0088DE3F /* PieChartViewController.swift */,
+				A5103069245DFC5F0004A5E5 /* PieChartView.swift */,
 				A5F0C2CB245DE1AE0088DE3F /* Main.storyboard */,
 				A5F0C2CE245DE1B00088DE3F /* Assets.xcassets */,
 				A5F0C2D0245DE1B00088DE3F /* LaunchScreen.storyboard */,
@@ -206,7 +209,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5F0C2CA245DE1AE0088DE3F /* SecondViewController.swift in Sources */,
+				A510306A245DFC5F0004A5E5 /* PieChartView.swift in Sources */,
+				A5F0C2CA245DE1AE0088DE3F /* PieChartViewController.swift in Sources */,
 				A5F0C2C8245DE1AE0088DE3F /* BarChartViewController.swift in Sources */,
 				A54CFBB1245DE4B600D53717 /* BarChartView.swift in Sources */,
 				A5F0C2C4245DE1AE0088DE3F /* AppDelegate.swift in Sources */,

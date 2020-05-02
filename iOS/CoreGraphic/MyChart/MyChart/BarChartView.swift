@@ -88,7 +88,7 @@ import UIKit
     func drawLineGraph(chartSpace: CGFloat) {
         let path = UIBezierPath()
         path.move(to: CGPoint(x: CGFloat(chartSpace / 2), y: self.frame.height - (element.first! / 100.0) * self.frame.height))
-        path.lineWidth = 5
+        path.lineWidth = chartSpace * 0.15
         path.lineJoinStyle = .round
         linePathColor.set()
         for (index, num) in element.enumerated() {
@@ -99,7 +99,7 @@ import UIKit
     
     func drawCircle(chartSpace: CGFloat) {
         for (index, num) in element.enumerated() {
-            let circle = UIBezierPath(arcCenter: CGPoint(x: CGFloat(chartSpace / 2) + CGFloat(index * 2) * chartSpace, y: self.frame.height - (num / 100.0) * self.frame.height), radius: 10, startAngle: 0, endAngle: 360, clockwise: true)
+            let circle = UIBezierPath(arcCenter: CGPoint(x: CGFloat(chartSpace / 2) + CGFloat(index * 2) * chartSpace, y: self.frame.height - (num / 100.0) * self.frame.height), radius: chartSpace * 0.2, startAngle: 0, endAngle: 360, clockwise: true)
             UIColor.white.set()
             circle.fill()
         }

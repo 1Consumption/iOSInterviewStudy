@@ -8,13 +8,13 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class PieChartViewController: UIViewController {
 
+    @IBOutlet weak var pieChartView: PieChartView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        pieChartView.setGraph(element: [1,2,3,3,3,3,4,5,2,6,3,1,3,5])
     }
-
-
 }
 
