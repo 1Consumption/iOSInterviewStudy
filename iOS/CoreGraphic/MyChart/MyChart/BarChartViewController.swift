@@ -10,11 +10,11 @@ import UIKit
 
 class BarChartViewController: UIViewController {
 
+    @IBOutlet weak var barChartView: BarChartView! 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        barChartView.setGraph(element: [10,90,30,10])
     }
-
-
 }
 
