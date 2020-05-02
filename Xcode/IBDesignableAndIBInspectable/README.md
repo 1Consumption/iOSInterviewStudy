@@ -2,7 +2,7 @@
 
 - @IBDesignable과 @IBInspectable을 이용하면, 커스텀 뷰를 Interface Builder에 보여주거나 Interface Builder에서 제어하도록 만들수 있습니다.
 - 커스텀 뷰를 @IBDesignable로 선언하면, 인터페이스 빌더가 커스텀 뷰의 인스턴스를 생성하여 스토리보드에 직접 그려줍니다.
-- @IBDesignable을 이용해서 Attributes inspector에서 세팅할 수 있는 프로퍼티를 만들 수 있습니다.
+- @IBInspectable을 이용해서 Attributes inspector에서 세팅할 수 있는 프로퍼티를 만들 수 있습니다.
 - Interface Builder는 기본 타입들(booleans, numbers, strings)과 기본 타입들의 옵셔널들, 그리고 CGRect, CGSize, CGPoint, UIColor를 지원합니다.
 - 소스 코드에 브레이크 포인트를 추가하고, Editor > Debug Selected Views를 선택하면, 브레이크 포인트에 멈춰서 커스텀 뷰를 디버깅할 수 있습니다.(?)
 
@@ -35,7 +35,7 @@ class RatingControl: UIStackView {
     }
 }
 ```
-위와 같이 Interface Builder를 통해 호출되는 init(coder:)에서 setupButton을 호출하도록 만들어서 오토 레이아웃을 지정한 결과를 인터페이스 빌더에서 바로 확인할 수 있습니다.
+위와 같이 Interface Builder를 통해 호출되는 init(coder:)에서 setupButton을 호출하도록 만들어서 오토 레이아웃을 설정한 결과를 인터페이스 빌더에서 바로 확인할 수 있습니다.
 
 ### IBInspectable
 
