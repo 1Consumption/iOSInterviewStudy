@@ -14,7 +14,7 @@ class PieChartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pieChartView.setGraph(element: [1,2,3,3,3,3,4,5,2,6,3,1,3,5])
+        pieChartView.setGraph(element: [1,3,2,3,5])
     }
 }
 
