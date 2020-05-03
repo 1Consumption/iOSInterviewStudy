@@ -7,7 +7,7 @@
 
 intrinsic Content Size : 본질적인 컨텐츠 크기
 
-UILabel이나 UIButton 등 대부분의 view들은 intrinsic Content Size(기본적으로 컨텐츠 크기만큼의 사이즈)를 가지고 있습니다. 이런 View들은 intrinsicContentSize를 가지고 있기 때문에 auto layout으로 구현할때 제약사항으로 width와 height를 추가하지 않아도 ***사진 1***처럼 오류가 나지 않습니다.
+UILabel이나 UIButton 등 대부분의 view들은 intrinsic Content Size(기본적으로 컨텐츠 크기만큼의 사이즈)를 가지고 있습니다. 이런 View들은 intrinsicContentSize를 가지고 있기 때문에 auto layout으로 구현할때 제약사항으로 width와 height를 추가하지 않아도 ***사진 1***처럼 정상적으로 View가 표시됩니다.
 
 **예시 1**
 
@@ -34,7 +34,7 @@ extension UILabel {
   }
 }
 ```
-코드를 추가하여 UILabel의 invalidateIntrinsicContentSize() 메소드를 비활성화(주석처리)하면 ***사진 3***과 같이 text 길이에 맞게 view의 size가 늘어나지 않습니다.
+코드를 추가하여 UILabel의 invalidateIntrinsicContentSize() 메소드를 비활성화(주석처리한 부분)하면 ***사진 3***과 같이 text 길이에 맞게 view의 size가 늘어나지 않습니다.
 
 
 **예시2**
@@ -47,9 +47,9 @@ extension UILabel {
 intrinsicContentSize 프로퍼티가 아래와 같이 구현되어 있을 때
 ```swift
 public override var intrinsicContentSize: CGSize {
-  let count = CGFloat(self.max) 
-  var width = self.point * count 
-  width = width + CGFloat(count - 1) * self.spacing 
+  let count = CGFloat(self.max) // 별의 총 개수
+  var width = self.point * count // 별을 담는 사각형의 가로폭 * 별의 총 개수
+  width = width + CGFloat(count - 1) * self.spacing // 별들의 가로폭 * 별 사이 공백을 포함한 넓이
   return CGSize(width: width, height: self.point)
 }
 ```
@@ -85,7 +85,7 @@ public var point: CGFloat = 0 {
 
  ![](https://i.imgur.com/pDJxzVS.png)
 
-Description의 길이에 따라 Table View Cell의 높이가 동적으로 늘리고 title label의 size는 늘리지 않고 싶을 때 Content Hugging Priority를 사용할 수 있습니다. Cell의 크기가 늘어나도 Cell의 자식 View 중 하나인 title label이 자신의 사이즈를 지키기 위해서는 우선순위를 Description label 레이블보다 높이 설정해야합니다.
+Description의 길이에 따라 Table View Cell의 높이가 동적으로 늘리고 title label의 size는 늘리지 않고 싶을 때 Content Hugging Priority를 사용할 수 있습니다. Cell의 크기가 늘어나도 Cell의 자식 View 중 하나인 title label이 자신의 사이즈를 지키기 위해서는 우선순위를 Description label 보다 높이 설정해야합니다.
 
 
 두 label의 Content Hugging Priority가 같을 경우 두 label의 Vertical 제약이 충돌하는데, View가 늘어났을 때 어떤 label이 늘어나야 하는지 알 수 없기 때문에 에러 메시지를 띄웁니다. 따라서 Vertical Content Hugging Priority를 조정해야 합니다.
@@ -96,18 +96,26 @@ Description의 길이에 따라 Table View Cell의 높이가 동적으로 늘리
 [Compression Resistance Priority (750, 751), (751, 750)]
 
 **: 외부의 압축에도 View의 고유 사이즈를 지킬 수 있는 우선순위**
+
 **: 해당 View의 영역이 작아질 때 어떤 View를 줄일 것인가에 대한 제약사항**
 
-Content Hugging Priority와 자신의 크기를 지킨다는 점은 같지만 외부 환경 변화가 반대라고 할 수 있습니다. 부모 View가 줄어들 때 자식 View들은 부모 View가 줄어듦에 따라 줄어듭니다. 하지만 다른 View들보다 Content Compression Resistance Priority가 높다면 이 View는 부모 View가 줄어듦에 따라 최소한으로 줄어들 것입니다.(최대한 줄어들지 않을 것입니다.)
+부모 View가 줄어들 때 자식 View들은 부모 View가 줄어듦에 따라 줄어드는데, 다른 View들보다 Content Compression Resistance Priority를 높이 설정한다면 이 View는 부모 View가 줄어듦에 따라 최소한으로 줄어듭니다(최대한 줄어들지 않습니다.)
 
 
 **코드를 이용한 지정** 
 ```swift
 titleLabel.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: .Vertical)
 descriptionLabel.setContentHuggingPriority(UILayoutPriorityDefaultLow, forAxis: .Vertical)
+// UILayoutPriorityDefaultLow: 단추가 내용을 가로로 고정하는 우선 순위 수준.
+```
+메소드 원형
+```
+func setContentHuggingPriority(_ priority: UILayoutPriority, 
+for axis: NSLayoutConstraint.Axis)
 ```
 
 참고한 자료
+[setContentHuggingPriority(_:for:)](https://developer.apple.com/documentation/uikit/uiview/1622485-setcontenthuggingpriority)
 [Priority-in-Auto-Layout](https://ehdrjsdlzzzz.github.io/2019/04/14/Priority-in-Auto-Layout/)
 [ios-intrinsicContentSize](https://magi82.github.io/ios-intrinsicContentSize/)
 [[iOS] Content Hugging & Compression Resistance](http://blog.davepang.com/post/111)
