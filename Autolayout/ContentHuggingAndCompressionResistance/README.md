@@ -3,7 +3,7 @@
 ![](https://i.imgur.com/zKzXpDB.png)
 [사진 1, 사진 2, 사진 3]
 
-## Content Hugging Priority & Compression resistance
+## Content Hugging & Compression resistance
 ![](https://i.imgur.com/Z0ra5OS.png)
 
 ### Content Hugging Priority

@@ -1,8 +1,10 @@
-# Intrinsic content size와 Content hugging 그리고 Compression resistance 
+# IntrinsicContentSize
 
 ![](https://i.imgur.com/zKzXpDB.png)
 [사진 1, 사진 2, 사진 3]
-## intrinsicContentSize & invalidateIntrinsicContentSize()
+
+## IntrinsicContentSize & invalidateIntrinsicContentSize()
+
 ### intrinsicContentSize 프로퍼티
 
 intrinsic Content Size : 본질적인 컨텐츠 크기
